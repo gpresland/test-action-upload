@@ -30,14 +30,8 @@ jobs:
         echo $(date) > $(date '+%Y-%m-%d').md
     - name: Commit and push latest data
       run: |-
+        git checkout -b gh-pages
         git add $(date '+%Y-%m-%d').md
         timestamp="$(date --utc)"
         git commit -m "Latest data: ${timestamp}" || exit 0
         git push
-    - name: Commit and push gh-pages
-      run: |-
-        git add --all
-        timestamp="$(date --utc)"
-        git commit -m "Build gh-pages: ${timestamp}" || exit 0
-        git checkout -b gh-pages
-        git push --force --set-upstream origin gh-pages
