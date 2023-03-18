@@ -22,11 +22,13 @@ jobs:
     - name: Generate file
       run: |-
         echo $(date) > $(date '+%Y-%m-%d').md
+        echo $(date) >> timestamps.log
     - name: Commit and push latest data
       run: |-
         git fetch
         git checkout gh-pages
         git add $(date '+%Y-%m-%d').md
+        git add timestamps.log
         timestamp="$(date --utc)"
         git commit -m "Latest data: ${timestamp}" || exit 0
         git push --force --set-upstream origin gh-pages
