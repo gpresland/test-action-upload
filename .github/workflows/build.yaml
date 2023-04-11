@@ -26,7 +26,7 @@ jobs:
       run: |-
         git fetch origin gh-pages
         git switch gh-pages
-        git add $(date '+%Y-%m-%d').md
+        #git add $(date '+%Y-%m-%d').md
         echo $(date) >> timestamps.log
         git add timestamps.log
         timestamp="$(date --utc)"
