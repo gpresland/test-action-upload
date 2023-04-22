@@ -10,11 +10,6 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: npm
     - name: Setup Git
       run: |-
         git config user.name "GitHub Actions"
@@ -26,7 +21,6 @@ jobs:
       run: |-
         git fetch origin gh-pages
         git switch gh-pages
-        #git add $(date '+%Y-%m-%d').md
         echo $(date) >> timestamps.log
         git add timestamps.log
         timestamp="$(date --utc)"
