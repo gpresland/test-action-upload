@@ -8,21 +8,28 @@ jobs:
   scheduled:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Scrape
+    - run: |-
+        pip install -r requirements.txt
+        python scrape.py >> scrape.csv
     - name: Setup Git
       run: |-
         git config user.name "GitHub Actions"
         git config user.email "gpresland@gmail.com"
     - name: Generate File
       run: |-
-        echo $(date) > $(date '+%Y-%m-%d').md
+        echo $(date) > $(date "+%Y-%m-%d").md
     - name: Publish
       run: |-
         git fetch origin gh-pages
         git switch gh-pages
         echo $(date) >> timestamps.log
         git add timestamps.log
+        git add scrape.csv
         timestamp="$(date --utc)"
         git commit -m "Latest data: ${timestamp}" || exit 0
         git push --force --set-upstream origin gh-pages
