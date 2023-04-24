@@ -19,6 +19,9 @@ def parse_results(text):
     else:
         return "N/A"
 
+print(buy_response.status_code);
+print(rent_response.status_code);
+
 print({
     "buy": parse_results(buy_response.text),
     "rent": parse_results(rent_response.text)
