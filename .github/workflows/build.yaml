@@ -21,14 +21,17 @@ jobs:
         echo $(date) > $(date "+%Y-%m-%d").md
     - name: Publish
       run: |-
+        git fetch origin main
         git fetch origin gh-pages
-        git switch gh-pages
+        git switch main
+        git checkout gh-pages scrape.csv
     - name: Scrape
       run: |-
         pip install -r requirements.txt
         python scrape.py >> scrape.csv
     - name: Publish
       run: |-
+        git switch gh-pages
         echo $(date) >> timestamps.log
         git add timestamps.log
         git add scrape.csv
