@@ -21,8 +21,7 @@ jobs:
         echo $(date) > $(date "+%Y-%m-%d").md
     - name: Publish
       run: |-
-        git fetch origin main
-        git fetch origin gh-pages
+        git fetch origin gh-pages:gh-pages
         git checkout gh-pages scrape.csv
     - name: Scrape
       run: |-
