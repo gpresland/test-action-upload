@@ -23,7 +23,6 @@ jobs:
       run: |-
         git fetch origin main
         git fetch origin gh-pages
-        git switch main
         git checkout gh-pages scrape.csv
     - name: Scrape
       run: |-
