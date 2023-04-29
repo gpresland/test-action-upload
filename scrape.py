@@ -19,8 +19,11 @@ def parse_results(text):
     else:
         return "N/A"
 
-print(buy_response.status_code);
-print(rent_response.status_code);
+print("--------------------------------------------------------------------------------")
+print(buy_response.content);
+print("--------------------------------------------------------------------------------")
+print(rent_response.content);
+print("--------------------------------------------------------------------------------")
 
 print({
     "buy": parse_results(buy_response.text),
