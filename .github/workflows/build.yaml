@@ -32,7 +32,6 @@ jobs:
         git switch gh-pages
         echo $(date) >> timestamps.log
         git add timestamps.log
-#         git add scrape.csv
         timestamp="$(date --utc)"
         git commit -m "Latest data: ${timestamp}" || exit 0
         git push --force --set-upstream origin gh-pages
