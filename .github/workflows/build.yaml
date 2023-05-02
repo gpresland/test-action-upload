@@ -22,17 +22,17 @@ jobs:
     - name: Publish
       run: |-
         git fetch origin gh-pages:gh-pages
-        git checkout gh-pages scrape.csv
-    - name: Scrape
-      run: |-
-        pip install -r requirements.txt
-        python scrape.py >> scrape.csv
+#         git checkout gh-pages scrape.csv
+#     - name: Scrape
+#       run: |-
+#         pip install -r requirements.txt
+#         python scrape.py >> scrape.csv
     - name: Publish
       run: |-
         git switch gh-pages
         echo $(date) >> timestamps.log
         git add timestamps.log
-        git add scrape.csv
+#         git add scrape.csv
         timestamp="$(date --utc)"
         git commit -m "Latest data: ${timestamp}" || exit 0
         git push --force --set-upstream origin gh-pages
